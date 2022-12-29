@@ -24,10 +24,10 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
                 .setIfMissing({ save: [] })
                 .insert('after', 'save[-1]',
                     [{
-                        _key: uuidv4, userId: user.id, postedBy:
+                        _key: uuidv4, userId: user?.id, postedBy:
                             {
                                 _type: 'posted-by',
-                                _ref: user.id
+                                _ref: user?.id
                             }
                     }])
                 .commit()
@@ -83,7 +83,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
                                     {destination?.length > 20 ? destination?.slice(7, 20) : destination?.slice(7)}
                                 </a>
                             )}
-                            {postedBy?._id === user.id && (
+                            {postedBy?._id === user?.id && (
                                 <button type='button'
                                         onClick={event => {
                                             event.stopPropagation();
